@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Bachaaaaaa ❤️</title>
+
+<style>
+body{
+ margin:0;
+ font-family: 'Segoe UI', sans-serif;
+ background:black;
+ color:white;
+ text-align:center;
+ overflow-x:hidden;
+ overflow-y:auto;;
+}
+
+/* password screen */
+#lock{
+ position:fixed;
+ width:100%;
+ height:100%;
+ background:black;
+ display:flex;
+ flex-direction:column;
+ justify-content:center;
+ align-items:center;
+ z-index:10;
+}
+
+input{
+ padding:15px;
+ font-size:18px;
+ border-radius:20px;
+ border:none;
+ text-align:center;
+}
+
+button{
+ padding:12px 20px;
+ font-size:18px;
+ border:none;
+ border-radius:25px;
+ margin-top:15px;
+ cursor:pointer;
+}
+
+/* roses falling */
+.rose{
+ position:fixed;
+ top:-50px;
+ font-size:24px;
+ animation: fall linear infinite;
+}
+
+@keyframes fall{
+ to{
+  transform:translateY(110vh);
+ }
+}
+
+/* name glow */
+.name{
+ font-size:45px;
+ margin-top:30px;
+ animation: heartbeat 1s infinite;
+}
+
+@keyframes heartbeat{
+ 0%{transform:scale(1);}
+ 25%{transform:scale(1.1);}
+ 40%{transform:scale(1);}
+ 60%{transform:scale(1.1);}
+ 100%{transform:scale(1);}
+}
+
+
+@keyframes glow{
+ from{text-shadow:0 0 10px red;}
+ to{text-shadow:0 0 25px pink,0 0 40px red;}
+}
+
+/* slideshow */
+.slideshow{
+ max-width:320px;
+ margin:20px auto;
+ border-radius:20px;
+ overflow:hidden;
+}
+.slideshow img{
+ width:100%;
+ height:420px;
+ object-fit:cover;
+}
+
+/* proposal */
+.yes{background:white;color:#ff4b7d;}
+.no{background:red;color:white;position:relative;}
+
+</style>
+</head>
+
+<body>
+
+<!-- PASSWORD SCREEN -->
+<div id="lock">
+<h2>Enter secret password 💌</h2>
+<p>Hint: her nickname</p>
+<input id="pass" placeholder="Enter password">
+<button onclick="check()">Unlock ❤️</button>
+<h3 id="wrong"></h3>
+</div>
+
+<!-- MAIN SITE -->
+<div id="main" style="display:none;">
+
+<h1 class="name">For My Bachaaaaaa ❤️</h1>
+<h3>From Maaanuuuu</h3>
+<h2 id="countdown"></h2>
+
+
+<h2 id="typing"></h2>
+
+<div class="slideshow">
+<img id="slide" src="photo1.jpg">
+</div>
+
+<h1>Will you be mine forever? 💍</h1>
+<button class="yes" onclick="yes()">YES ❤️</button>
+<button class="no" onmouseover="run()">NO 😒</button>
+<h2 id="final"></h2>
+
+</div>
+
+<script>
+
+/* PASSWORD */
+function check(){
+ let p=document.getElementById("pass").value.toLowerCase();
+ if(p==="2312"){
+  document.getElementById("lock").style.display="none";
+  document.getElementById("main").style.display="block";
+  startRoses();
+  typeText();
+ }else{
+  document.getElementById("wrong").innerHTML="Wrong password 😒 try again";
+ }
+}
+
+/* TYPING LOVE LETTER */
+let text="I choose you and I will choose you over and over. Without pause, without a doubt, in a heartbeat. I will keep choosing you ❤️";
+let i=0;
+function typeText(){
+ let speed=setInterval(()=>{
+  if(i<text.length){
+   document.getElementById("typing").innerHTML+=text.charAt(i);
+   i++;
+  }else clearInterval(speed);
+ },50);
+}
+
+/* SLIDESHOW */
+let imgs=["photo1.jpg","photo2.jpg","photo3.jpg","photo4.jpg","photo5.jpg","photo6.jpg","photo7.jpg","photo8.jpg"];
+let j=0;
+setInterval(()=>{
+ j=(j+1)%imgs.length;
+ document.getElementById("slide").src=imgs[j];
+},2000);
+
+/* ROSES FALL */
+function startRoses(){
+ setInterval(()=>{
+  let r=document.createElement("div");
+  r.className="rose";
+  r.innerHTML="🌹";
+  r.style.left=Math.random()*100+"vw";
+  r.style.animationDuration=(3+Math.random()*5)+"s";
+  document.body.appendChild(r);
+  setTimeout(()=>r.remove(),8000);
+ },300);
+}
+
+/* YES */
+function yes(){
+ document.getElementById("final").innerHTML="😭❤️ I LOVE YOU FOREVER BACHA";
+}
+
+/* NO RUN */
+function run(){
+ let b=document.querySelector(".no");
+ let x=Math.random()*300-150;
+ let y=Math.random()*300-150;
+ b.style.transform=`translate(${x}px,${y}px)`;
+}
+
+/* YES */
+function yes(){
+ document.getElementById("final").innerHTML="😭❤️ I LOVE YOU FOREVER BACHA";
+}
+
+/* NO RUN */
+function run(){
+ let b=document.querySelector(".no");
+ let x=Math.random()*300-150;
+ let y=Math.random()*300-150;
+ b.style.transform=`translate(${x}px,${y}px)`;
+}
+
+/* COUNTDOWN SINCE YOU MET */
+function updateCountdown(){
+ let meetDate = new Date("2025-12-22");
+ let now = new Date();
+
+ let diff = now - meetDate;
+
+ let days = Math.floor(diff/(1000*60*60*24));
+ let hours = Math.floor((diff/(1000*60*60))%24);
+ let minutes = Math.floor((diff/(1000*60))%60);
+
+ document.getElementById("countdown").innerHTML =
+ "❤️ Together for "+days+" days "+hours+" hrs "+minutes+" mins";
+}
+
+setInterval(updateCountdown,1000);
+updateCountdown();
+
+</script>
+
+
+</script>
+</body>
+</html>
